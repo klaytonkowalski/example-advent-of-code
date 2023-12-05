@@ -2,8 +2,10 @@
 local file = io.open("input.txt", "r")
 if not file then return end
 
--- Read the file line by line.
+-- Some variables.
 local values = {}
+
+-- Read the file line by line.
 for line in file:lines() do
 
     -- Get the first digit.
@@ -13,6 +15,7 @@ for line in file:lines() do
 
     -- Combine the first and last digits into a single value.
     values[#values + 1] = first .. last
+
 end
 
 -- Calculate the sum of all values.

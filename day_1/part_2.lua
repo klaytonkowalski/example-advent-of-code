@@ -24,8 +24,10 @@ local function string_find_reverse(line, pattern)
     return #line - end_index + 1, #line - start_index + 1
 end
 
--- Read the file line by line.
+-- Some variables.
 local values = {}
+
+-- Read the file line by line.
 for line in file:lines() do
 
     -- Get the start and end indices of the first and last numerical digits.
