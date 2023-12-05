@@ -5,12 +5,14 @@ if not file then return end
 -- Read the file line by line.
 local values = {}
 for line in file:lines() do
-    -- Get the first digit in the line.
+
+    -- Get the first digit.
     local first = string.match(line, "%d")
-    -- Get the last digit in the line.
-    local second = string.match(string.reverse(line), "%d")
-    -- Combine the first and second digits into a single value.
-    values[#values + 1] = first .. second
+    -- Get the last digit.
+    local last = string.match(string.reverse(line), "%d")
+
+    -- Combine the first and last digits into a single value.
+    values[#values + 1] = first .. last
 end
 
 -- Calculate the sum of all values.
