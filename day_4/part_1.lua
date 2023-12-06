@@ -37,7 +37,7 @@ end
 -- Calculate the sum of all scores.
 local sum = 0
 for i = 1, #scores do
-    sum = sum + tonumber(scores[i])
+    sum = sum + scores[i]
 end
 
 -- Print the sum.
