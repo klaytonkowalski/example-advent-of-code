@@ -12,7 +12,7 @@ for number in string.gmatch(file_text, "%d+") do
     if #times == 4 then break end
 end
 
--- Get the race distances in millmeters.
+-- Get the winning race distances in millmeters.
 local distances = {}
 for number in string.gmatch(file_text, "%d+", 38) do
     distances[#distances + 1] = tonumber(number)
@@ -20,12 +20,12 @@ for number in string.gmatch(file_text, "%d+", 38) do
 end
 
 -- Calculate the distance results for holding down the button for [1, time] milliseconds.
--- Talley the amount of millisecond options that result in a 1st place win for the race.
+-- Tally the amount of millisecond options that result in a win for the race.
 local winner_count = { 0, 0, 0, 0 }
 for i = 1, 4 do
     for j = 1, times[i] do
-        local distance_result = (times[i] - j) * j
-        if distance_result > distances[i] then
+        local option = (times[i] - j) * j
+        if option > distances[i] then
             winner_count[i] = winner_count[i] + 1
         end
     end
