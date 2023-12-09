@@ -38,35 +38,27 @@ for i = 3, 800 do
     end
 end
 
--- Check if all current triplets end in "Z".
-local function all_end_in_z()
-    for i = 1, #current_triplets do
-        if not ends_in_z(current_triplets[i]) then
-            return false
-        end
-    end
-    return true
-end
-
--- While the current triplets do not all end in "Z", continue traversing the map.
--- Tally how many traversals are made.
-local traversal_count = 0
-local instruction_index = 1
-while not all_end_in_z() do
-    -- All triplets make the same traversal simultaneously.
-    for i = 1, #current_triplets do
-        if i == 1 then
-            print(current_triplets[i], instruction_index, instructions[instruction_index])
-        end
+-- Tally the amount of traversals it takes for each triplet to end in a "Z".
+local traversals = {}
+for i = 1, #current_triplets do
+    local instruction_index = 1
+    traversals[#traversals + 1] = 0
+    while not ends_in_z(current_triplets[i]) do
         current_triplets[i] = instructions[instruction_index] == "L" and mappings[current_triplets[i]].left or mappings[current_triplets[i]].right
+        instruction_index = instruction_index + 1
+        -- If we reached the end of the left-right instructions, then start over.
+        if instruction_index > #instructions then
+            instruction_index = 1
+        end
+        traversals[#traversals] = traversals[#traversals] + 1
     end
-    instruction_index = instruction_index + 1
-    -- If we reached the end of the left-right instructions, then start over.
-    if instruction_index > #instructions then
-        instruction_index = 1
-    end
-    traversal_count = traversal_count + 1
 end
 
--- Print the traversal count.
-print(traversal_count)
+-- Calculate the least common multiple of the traversals.
+local lcm = 1
+for i = 1, #traversals do
+    lcm = lcm * traversals[i]
+end
+
+-- Print the lcm.
+print(lcm)
