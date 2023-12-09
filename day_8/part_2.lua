@@ -61,4 +61,5 @@ for i = 1, #traversals do
 end
 
 -- Print the lcm.
+-- Note: The answer is too large for Lua's integer bit depth, so it will not display correctly.
 print(lcm)
